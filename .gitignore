@@ -1,0 +1,14 @@
+node_modules
+
+media/test
+media/subtitles
+
+main.css
+index.html
+site.js
+
+*.srt
+*.jpg
+*.jpeg
+*.mp4
+

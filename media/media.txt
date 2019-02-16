@@ -1,0 +1,21 @@
+ffmpeg 
+    -i [input] 
+    -c:v libx264 
+    -r * [ * = framerate, tex 23.98] 
+    -x264opts "keyint=*:min-keyint=*:no-scenecut" [ * = antal frames, tex r*4 = ger keyframe 4/sec]
+    [output.*mp4]
+
+ffmpeg -i [input] -c:v libx264 -c:a aac [output.*mp4]
+
+Bitrate:
+ffmpeg -i [input] -c:v libx264 -b:v ???k -bufsize ???k -c:a aac [output.*mp4]
+
+MP4Box -dash 4000 -frag 4000 -rap [filename]
+* -rap = tvingar start på keyframe
+* -dash/frag = samma som segment_duration, alltså antal sekunder mellan keyframes
+
+
+
+mosaic
+ffmpeg -i input.mp4 -frames 1 -vf "select='not(mod(n,***))',scale=160:-1,tile=10x5" out.jpg 
+*** = hur många frames att hoppa över, välj en frame med *** mellanrum??
